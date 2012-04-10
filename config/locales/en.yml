@@ -1,0 +1,16 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  views:
+    pagination:
+      previous: "&lt;"
+      next: "&gt;"
+      first: "&lt;&lt;"
+      last: "&gt;&gt;"
+
+  errors:
+    messages:
+      email: "is not valid. Please enter a valid email. ex: johndoe@mail.com"
+      

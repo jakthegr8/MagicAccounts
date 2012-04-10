@@ -1,0 +1,34 @@
+<div id ="viewacctran">
+<div class="group_header wellblue">
+    <h3> Showing Transactions for <%=  @transaction.account.name %></h3>
+    <strong><%= link_to "New Transaction", "javascript:void(0)", {:class => 'btn primary', :id => 'newtranbtn'} %></strong>
+</div>
+<table class="table table-striped">
+ <thead>
+  <tr>
+    <th>ID</th>
+    <th><%= t("activerecord.attributes.transaction.remarks", :default => t("activerecord.labels.remarks", :default => "Transaction")) %>    </th>
+    <th>Total Amount</th>
+    <th>Details</th>
+    <th>Created at</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+<tbody>
+  <% tran.each do |transaction| %>
+  <tr>
+    <td><%= transaction.id %></td>
+    <td><%= link_to transaction.remarks, transaction_path(transaction) %></td>
+    <td><%= transaction.amount %></td>
+    <td><%= transaction.details %> </td>
+    <td><%= transaction.created_at %></td>
+    <td>
+      <%= link_to image_tag('edit_16x16.png', :class => 'imglink'), edit_transaction_path(transaction) %>
+      <%= link_to image_tag('delicon.png', :class => 'imglink'), transaction_path(transaction), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+    </td>
+  </tr>
+  <%end%>
+</tbody>
+</table>
+<%= paginate tran  %>
+</div>

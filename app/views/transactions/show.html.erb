@@ -1,0 +1,25 @@
+
+<label class="label"><%= t("activerecord.attributes.transaction.txndate", :default => t("activerecord.labels.txndate", :default => "Txndate")) %>:</label>
+<p><%= @transaction.txndate %></p>
+
+<label class="label"><%= t("activerecord.attributes.transaction.account_id", :default => t("activerecord.labels.account_id", :default => "Account")) %>:</label>
+<p><%= Account.find_by_id(@transaction.account_id).name + " (" + Account.find_by_id(@transaction.account_id).code + ")" %></p>
+
+<label class="label"><%= t("activerecord.attributes.transaction.user_id", :default => t("activerecord.labels.user_id", :default => "User")) %>:</label>
+<p><%= User.find_by_id(@transaction.user_id).name %></p>
+
+<label class="label"><%= t("activerecord.attributes.transaction.beneficiary_id", :default => t("activerecord.labels.beneficiary_id", :default => "Beneficiary")) %>:</label>
+<p><%= @transaction.transactions_users.collect(&:user).collect(&:name).join(",") %></p>
+
+<label class="label"><%= t("activerecord.attributes.transaction.amount", :default => t("activerecord.labels.amount", :default => "Amount")) %>:</label>
+<p><%= @transaction.amount %></p>
+
+<label class="label"><%= t("activerecord.attributes.transaction.cndategory", :default => t("activerecord.labels.category", :default => "Category")) %>:</label>
+<p><%= @transaction.category %></p>
+
+<label class="label"><%= t("activerecord.attributes.transaction.remarks", :default => t("activerecord.labels.remarks", :default => "Remarks")) %>:</label>
+<p><%= @transaction.remarks %></p>
+
+<div class="form-actions">
+<%= link_to "Back", transactions_path, :class => 'btn'  %>
+</div>

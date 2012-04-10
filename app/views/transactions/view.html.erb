@@ -1,0 +1,11 @@
+<div id="newacctran" style="display: none">
+<div class="group_header wellblue">
+  <h3> Create New Transaction </h3>
+  <strong><%= link_to "Hide", "javascript:void(0)", :class => 'btn primary', :id => 'hidetranbtn' %></strong>
+</div>
+<%= form_for @transaction, :remote => true, :validate => true, :url => transactions_path, :html => { :class => :form } do |f| -%>
+  <%= render :partial => "form", :locals => {:f => f} %>
+<% end -%>
+</div>
+
+<%= render(:partial => 'transactions/tran', :object => @transactions) -%>

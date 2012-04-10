@@ -1,0 +1,10 @@
+$("#viewacctran").replaceWith("<%= escape_javascript(render(
+    :partial => 'transactions/tran',
+    :object => Transaction.view_transactions(session[:user_id],@transaction.account.id,1)))%>");
+
+$("#tranact").replaceWith("<%= escape_javascript(render(
+    :partial => 'transactions/activitytransactions',
+    :object => Comment.joins("JOIN transactions t ON comments.commentable_id = t.id").where("commentable_type = 'Transaction'").select("comments.*").order("created_at DESC"), :locals =>  {:type => 'transactions', :limit => 15}))%>");
+
+$("#newacctran").slideToggle();
+$("#newtranbtn").text = 'New Transaction';

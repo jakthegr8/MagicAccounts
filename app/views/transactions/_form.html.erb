@@ -1,0 +1,62 @@
+<div class="clearfix">
+   <%= f.label :txndate, t("activerecord.attributes.transaction.txndate", :default => "Txn Date"), :class => :label %>
+  <div class="input">
+    <%= f.date_select :txndate, :class => 'date_select' %>
+  </div>
+</div>
+
+<div class="clearfix">
+  <%= f.label :account_id, t("activerecord.attributes.transaction.account_id", :default => "Account"), :class => :label %>
+  <div class="input">    
+    <%= f.select :account_id, @accounts.collect {|acc| [acc.name, acc.id]}, {:prompt => 'Select Account' }, { :selected => @defaultaccount, :class => 'selectwidth' } %>
+  </div>
+</div>
+
+<div class="clearfix">
+   <%= f.label :user_id, t("activerecord.attributes.transaction.user_id", :default => "Investor"), :class => :label %>
+  <div class="input">
+    <%= f.select  :user_id,
+                  @accountusers.collect {|user| [user.user_name,user.user_id]},
+                  { :prompt => 'Select Investor'},
+                  { :class => 'selectwidth' } %>
+  </div>
+</div>
+
+<div class="clearfix">
+  <%= f.label :transaction_type, t("activerecord.attributes.transaction.account_id", :default => "Transaction Type"), :class => :label %>
+  <div class="input">
+    <%= f.select :transaction_type, Transaction::TRANSACTION_TYPES, {}, { :default => "Track a Personal Expense", :class => 'selectwidth' } %>
+  </div>
+</div>
+
+<% partial_name = case (f.object.transaction_type)
+                  when 2 then "group_equal"
+                  when 3 then "group_unequal"
+                  else "group_equal"
+                  end %>
+
+<%= render(:partial => "transactions/transaction_types/#{partial_name}", :locals =>  {:f => f}) %>
+
+<div class="clearfix">
+   <%= f.label :category, t("activerecord.attributes.transaction.category", :default => "Category"), :class => :label %>
+  <div class="input">
+    <%= f.select :category, Transaction::CATEGORIES, {:prompt => false }, {:default => 'General', :class => 'selectwidth'} %>
+  </div>
+</div>
+
+<div class="clearfix">
+   <%= f.label :remarks, t("activerecord.attributes.transaction.remarks", :default => "Remarks"), :class => :label %>
+  <div class="input">
+    <%= f.text_area :remarks, :class => 'text_area', :rows => 5  %>
+  </div>
+</div>
+
+<div class="clearfix">
+  <div class="input">
+    <%= f.hidden_field  :enteredby, :value => session[:user_id] %>
+  </div>
+</div>
+
+<div class="form-actions">
+  <button class="btn primary" type="submit">Save</button>
+</div>

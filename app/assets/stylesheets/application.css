@@ -1,0 +1,37 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require bootstrap_and_overrides
+ *= require jquery.ui.all
+ *= require_tree . 
+*/
+html{ overflow-y:scroll; }
+
+.txnamountuser {
+    width: 100px;
+    margin-bottom: 5px !important;
+}
+
+.txnamountuser.btn.btn-primary.active {
+    background-color: #57A957;
+    color: #EEFFFF;
+}
+
+#transaction_user_amount .txn_user_list {
+    float: left;
+    width: 100px;
+    list-style-type: none;
+    margin-right: 20px;
+    margin-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.add-on { width: 100px !important; }
+
+.prepended_amount_input {
+    width: 100px !important;
+    text-align: center;
+}

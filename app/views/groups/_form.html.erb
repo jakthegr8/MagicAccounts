@@ -1,0 +1,29 @@
+
+<div class="clearfix">
+   <%= f.label :name, t("activerecord.attributes.group.name", :default => "Name"), :class => :label %>
+  <div class="input">
+    <%= f.text_field :name, :class => 'text_field' %>
+  </div>
+</div>
+
+<div class="clearfix">
+   <%= f.label :status, t("activerecord.attributes.group.status", :default => "Status"), :class => :label %>
+  <div class="input">
+    <%= f.select :status, Group::GROUPSTATUS, { :prompt => false }, { :class => 'selectwidth', :default => 'Enabled' } %>
+  </div>
+</div>
+
+<div class="clearfix">  
+  <div class="input">
+    <%= f.hidden_field  :user_id, :value => session[:user_id] %>
+  </div>
+</div>
+<div class="clearfix">
+  <div class="input">
+    <%= f.hidden_field  :code, :value => Digest::SHA1.hexdigest(Time.now.to_s + rand.to_s) %>
+  </div>
+</div>
+<div class="form-actions">
+  <button class="btn primary" type="submit">Save</button> or
+	<%= link_to "Cancel", groups_path %>
+</div>
